@@ -3,11 +3,11 @@ import java.util.*;
 public class Problem217 {
     public static boolean containsDuplicate(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
-        for(int i = 0; i < nums.length; i++){
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-            if(map.get(nums[i]) > 1){
+        for (int num : nums) {
+            if (map.containsKey(num) && map.get(num) >= 1) {
                 return true;
             }
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
         return false;
     }
