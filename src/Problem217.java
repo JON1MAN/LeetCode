@@ -2,12 +2,13 @@ import java.util.*;
 
 public class Problem217 {
     public static boolean containsDuplicate(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int num : nums) {
-            if (map.containsKey(num) && map.get(num) >= 1) {
+        Map<Integer, Integer> resultmap = new HashMap<>();
+        for(int num : nums){
+
+            if(resultmap.containsKey(num) && resultmap.get(num) > 1){
                 return true;
             }
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            resultmap.put(num, resultmap.getOrDefault(num, 1) + 1);
         }
         return false;
     }
