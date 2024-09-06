@@ -6,20 +6,22 @@ public class Problem26 {
 
     public int removeDuplicates(int[] nums) {
         int n = nums.length;
+        if(n < 1){
+            return n;
+        }
         int count = 0;
         int left = 0;
         int right = 1;
+
         while(right < n){
-            if(nums[right] == nums[left]){
-                right++;
+            if(nums[left] != nums[right]){
                 count++;
-            } else {
-                nums[left + 1] = nums[right];
-                left++;
-                right++;
+                nums[++left] = nums[right];
             }
+            right++;
         }
-        return count;
+        return count + 1;
+
     }
 
     public static void main(String[] args) {
