@@ -3,49 +3,39 @@ import java.util.*;
 public class Problem2070 {
 
     public int[] maximumBeauty(int[][] items, int[] queries) {
-        int n = queries.length;
-        int[] answer = new int[n];
-
-        Arrays.sort(queries);
+        int q = queries.length;
+        int n = items.length;
         Arrays.sort(items, Comparator.comparingInt(a -> a[0]));
 
-        for (int[] item : items) {
-            System.out.println(Arrays.toString(item));
+        int[] maxBeauty = new int[n];
+        maxBeauty[0] = items[0][1];
+        for(int i = 1; i < n; i++) {
+            maxBeauty[i] = Math.max(items[i][1], maxBeauty[i - 1]);
         }
 
-        for (int i = 1; i < items.length - 1; i++) {
-            items[i][1] = Math.max(items[i - 1][1], items[i][1]);
-        }
+        for (int i = 0; i < q - 1; i++) {
+            int price = queries[i];
+            int right = n - 1;
+            int left = 0;
 
-        for (int[] item : items) {
-            System.out.println(Arrays.toString(item));
-        }
-
-        for (int i = 0; i <= n - 1; i++) {
-            int maxBeauty = binarySearch(items, queries[i]);
-            answer[i] = maxBeauty;
-        }
-
-        return answer;
-    }
-
-    public int binarySearch(int[][] array, int price) {
-        int maxBeauty = 0;
-        int left = 0;
-        int right = array.length - 1;
-        int mid = 0;
-
-        while (left <= right) {
-            mid = (left + right) / 2;
-            if (array[mid][0] <= price) {
-                maxBeauty = Math.max(maxBeauty, array[mid][1]);
-                left = mid + 1;
-            } else {
-                right = mid - 1;
+            while (left <= right) {
+                int mid = left + (right  - left)/ 2;
+                if(items[mid][0] <= price) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
             }
+
+            if (right >= 0) {
+                queries[i] = maxBeauty[right];
+            } else {
+                queries[i] = 0;
+            }
+
         }
 
-        return maxBeauty;
+        return queries;
     }
 
     public static void main(String[] args) {
