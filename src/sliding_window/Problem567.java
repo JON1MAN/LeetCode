@@ -5,33 +5,39 @@ import java.util.stream.IntStream;
 
 public class Problem567 {
     public boolean checkInclusion(String s1, String s2) {
-        if(s1.equals(s2)) {
-            return true;
+
+        int[] array = new int[128];
+        var s1_chars = s1.toCharArray();
+        var s2_chars = s2.toCharArray();
+
+        for(char curr : s1_chars) {
+            ++array[curr];
         }
 
-        var array = s2.getBytes();
-        var s1_bytes = s1.getBytes();
-
-        int target = IntStream.range(0, s1_bytes.length)
-                .map(i -> s1_bytes[i])
-                .sum();
-
-        int n = s2.length();
+        int min = Integer.MAX_VALUE;
         int left = 0;
-        int right = s1.length() - 1;
+        int right = 0;
+        int n = s2.length();
+        int counter = 0;
 
         while (right < n) {
-            int sum = IntStream.range(left, right + 1)
-                    .map(i -> array[i])
-                    .sum();
-            if(target == sum) {
-                return true;
-            } else {
-                right++;
+            char curr = s2_chars[right];
+            if (--array[curr] >= 0) {
+                counter++;
+            }
+            while (counter == s1.length()) {
+                int curLen = right - left + 1;
+                min = Math.min(min, curLen);
+
+                char leftChar = s2_chars[left];
+                if(++array[leftChar] >= 0) {
+                    counter--;
+                }
                 left++;
             }
+            right++;
         }
-        return false;
+        return min == s1.length();
     }
 
     public static void main(String[] args) {
