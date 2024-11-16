@@ -1,3 +1,5 @@
+package Java;
+
 public class Problem1512 {
 
     public int numIdenticalPairs(int[] nums) {

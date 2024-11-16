@@ -1,4 +1,7 @@
-import java.util.*;
+package Java;
+
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Problem2070 {
 

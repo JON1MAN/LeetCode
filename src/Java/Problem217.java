@@ -1,4 +1,7 @@
-import java.util.*;
+package Java;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Problem217 {
     public static boolean containsDuplicate(int[] nums) {

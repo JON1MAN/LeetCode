@@ -1,4 +1,4 @@
-/*In this approach I am using two pointers pattern,*/
+package Java;/*In this approach I am using two pointers pattern,*/
 /*we can go both form start and end of string*/
 /*in loop we check */
 /*        if vowels has character of string[left] if not left++*/

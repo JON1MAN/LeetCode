@@ -1,3 +1,5 @@
+package Java;
+
 import java.util.Locale;
 
 public class Problem125 {
