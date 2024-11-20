@@ -16,7 +16,7 @@ public class Problem2070 {
             maxBeauty[i] = Math.max(items[i][1], maxBeauty[i - 1]);
         }
 
-        for (int i = 0; i < q - 1; i++) {
+        for (int i = 0; i < q; i++) {
             int price = queries[i];
             int right = n - 1;
             int left = 0;
@@ -35,7 +35,6 @@ public class Problem2070 {
             } else {
                 queries[i] = 0;
             }
-
         }
 
         return queries;
