@@ -17,7 +17,9 @@ public class Problem20 {
 
         char[] chars = s.toCharArray();
         for (char current : chars) {
-            if (current == '}' || current == ')' || current == ']') {
+            if (current == '}' ||
+                current == ')' ||
+                current == ']') {
                 if (braces.empty() || current != braces.peek()) {
                     return false;
                 } else {
