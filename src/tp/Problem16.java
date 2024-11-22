@@ -22,13 +22,14 @@ public class Problem16 {
                 if(difference < min) {
                     min = difference;
                     result = sum;
+                }
 
+                if (sum > target) {
                     right--;
+                } else if (sum < target){
                     left++;
-                } else if (difference == min){
-                    right--;
                 } else {
-                    left++;
+                    return target;
                 }
             }
         }
