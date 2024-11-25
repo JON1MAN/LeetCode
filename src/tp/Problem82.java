@@ -2,23 +2,23 @@ package tp;
 
 public class Problem82 {
     public ListNode deleteDuplicates(ListNode head) {
-        var left = head;
-        var right = head.next;
-        var previous = left;
+        var temp = new ListNode();
+        temp.next = head;
+        var left = temp;
+        var right = head;
 
         while (right != null) {
-            if (left.val != right.val) {
-                left.next = right;
-                previous = left;
-                left = right;
-                right = left.next;
-            } else {
-                while (left.val == right.val) {
+            if (right.next != null && right.val == right.next.val) {
+                while (right.next != null && right.val == right.next.val) {
                     right = right.next;
                 }
-                left = previous;
+                left.next = right.next;
+            } else {
+                left = right;
             }
+            right = right.next;
         }
-        return head;
+
+        return temp.next;
     }
 }
