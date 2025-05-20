@@ -3,34 +3,46 @@ package tp;
 import java.util.Arrays;
 
 public class Problem283 {
-
-    public void moveZeroes(int[] nums) {
+    public static void moveZeroes(int[] nums) {
         int n = nums.length;
-        if(n < 2){
+        int k = 0;
+        if (n < 2) {
             return;
         }
-        int left = 0;
-        int right = 1;
-        while(right < n){
-            if(nums[left] != 0){
-                left++;
-                right++;
-            } else if(nums[right] == 0){
-                right++;
-            } else {
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[k++] = nums[i];
+            }
+        }
+
+        for (int i = k; i < n; i++) {
+            nums[i] = 0;
+        }
+    }
+
+    public static void moveZeroesUpdate(int[] nums) {
+        int n = nums.length;
+        int k = 0;
+        if (n < 2) {
+            return;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 0) {
+                k++;
+            } else if (k > 0) {
+                int temp = nums[i];
+                nums[i] = 0;
+                nums[i - k] = temp;
             }
         }
     }
 
     public static void main(String[] args) {
-        Problem283 problem283 = new Problem283();
         int[] nums = new int[]{0,1,0,3,12};
-        problem283.moveZeroes(nums);
+        moveZeroes(nums);
         Arrays.stream(nums)
                 .forEach(System.out::println);
     }
-
 }
