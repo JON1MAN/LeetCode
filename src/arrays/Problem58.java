@@ -13,7 +13,7 @@ public class Problem58 {
         int lengthOfLast = 0;
         for (int i = trimmed.length() - 1; i >= 0; i--) {
             char currentLetter = trimmed.charAt(i);
-            if (currentLetter != ' ') {
+            if (currentLetter != ' ' && Character.isAlphabetic(currentLetter)) {
                 lengthOfLast++;
             } else {
                 break;
@@ -23,7 +23,7 @@ public class Problem58 {
     }
 
     public static void main(String[] args) {
-        var test = "   fly me   to   the moon  ".trim();
+        var test = "   fly me   to   the moon.  ".trim();
         var splitted = test.split(" +");
         System.out.println(splitted.length);
         Arrays.stream(splitted).forEach(System.out::println);
